@@ -3,7 +3,6 @@ var app         = express();
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var mongoose    = require('mongoose');
-var modulus     = require('./modulus.js');
 var port        = process.env.PORT || 8080;
 
 
@@ -31,7 +30,7 @@ apiRouter.get('/', function(req, res){
 
 app.use('/api', apiRouter);
 
-mongoose.connect(localhost:27017/nodeApiDB);
+mongoose.connect('mongodb://localhost:27017/node_api');
 
 app.listen(port);
 console.log('Magic happens on port ' + port);
