@@ -59,8 +59,21 @@ apiRouter.post('/authenticate', function(req, res){
 
 apiRouter.use(function(req, res, next){
   console.log('Somebody just came to our app!');
+  var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 
-  next();
+  if (token) {
+    jwt.verify(token, superSecret, function(err, decoded){
+      if (err) {
+        return res.status(403).send({ success: false, message: 'Failed to authenticate token.'});
+      } else {
+        req.decoded = decoded;
+
+        next();
+      }
+    });
+  } else {
+    return res.status(403).send({ success: false, message: 'No token provided.' });
+  }
 });
 
 apiRouter.get('/', function(req, res){
@@ -124,6 +137,10 @@ apiRouter.route('/users/:user_id')
       res.json({ message: 'Successfully deleted' });
     });
   });
+
+apiRouter.get('/me', function(req, res){
+  res.send(req.decoded);
+});
 
 app.use('/api', apiRouter);
 
