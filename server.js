@@ -5,13 +5,13 @@ var morgan      = require('morgan');
 var mongoose    = require('mongoose');
 var User        = require('./app/models/user');
 var jwt         = require('jsonwebtoken');
-var port        = process.env.PORT || 8080;
+var config      = require('./config')
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var superSecret = 'ilovescotchscotchyscotchscotch';
+var superSecret = config.secret;
 
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -144,7 +144,7 @@ apiRouter.get('/me', function(req, res){
 
 app.use('/api', apiRouter);
 
-mongoose.connect('mongodb://marcacyr:mc109285@novus.modulusmongo.net:27017/vu3roSiv');
+mongoose.connect(config.database);
 
-app.listen(port);
-console.log('Magic happens on port ' + port);
+app.listen(config.port);
+console.log('Magic happens on port ' + config.port);
