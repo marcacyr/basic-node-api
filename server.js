@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
 app.use(morgan('dev'));
 
 app.get('/', function(req, res){
-  res.send('Welcome to the home page!');
+  res.send('home page');
 });
 
 var apiRouter = express.Router();
@@ -49,7 +49,7 @@ apiRouter.post('/authenticate', function(req, res){
         });
         res.json({
           success: true,
-          message: 'Enjoy your token',
+          message: 'token issued',
           token: token
         });
       }
@@ -58,7 +58,7 @@ apiRouter.post('/authenticate', function(req, res){
 });
 
 apiRouter.use(function(req, res, next){
-  console.log('Somebody just came to our app!');
+  console.log('app accessed Successfully');
   var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 
   if (token) {
@@ -77,7 +77,7 @@ apiRouter.use(function(req, res, next){
 });
 
 apiRouter.get('/', function(req, res){
-  res.json({ message: 'hooray! welcome to our api!' });
+  res.json({ message: 'root of api hit' });
 });
 
 apiRouter.route('/users')
@@ -147,4 +147,4 @@ app.use('/api', apiRouter);
 mongoose.connect(config.database);
 
 app.listen(config.port);
-console.log('Magic happens on port ' + config.port);
+console.log('Listening on port ' + config.port);
