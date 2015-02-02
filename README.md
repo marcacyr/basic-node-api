@@ -21,4 +21,4 @@ module.exports = {
 
 Note: The "database of choice" for your app must be a MongoDB database unless you change out the packages to use something created
 for a different type of DB. You can conceivably use anything. It is simply that this API is set up to work with MongoDB out of the
-box.
+box. Also note that the ***server.js file already requires config.js by default*** so you will not have to add a require line, but you absolutely need this file to run this server without error.
