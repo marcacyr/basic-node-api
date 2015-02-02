@@ -5,6 +5,12 @@ This is a barebones API built using NodeJS and Express. Feel free to make use of
 
 ***The API relies on Mongoose, and by extension on MongoDB as the database.***
 
+## Setup
+1. Clone this repo to your local machine.
+2. Run ```npm install bcrypt-nodejs body-parser express jsonwebtoken mongoose morgan --save```
+
+This will install all dependencies and anything else needed based on package.json. You could also just run ```npm install``` and let npm do the work. I just tend to be explicit. It's your call whatever works best for you.
+
 ## Usage
 To use this as a basis for an API, you will have to create a file called config.js at the root level.
 
